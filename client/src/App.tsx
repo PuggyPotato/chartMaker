@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {Chart as ChartJS,ArcElement,Tooltip,Legend,LineElement,PointElement,LinearScale,CategoryScale, ChartData} from "chart.js";
+import {Chart } from "react-chartjs-2";
 
-function App() {
-  const [count, setCount] = useState(0)
 
-  return (
+
+function App(){
+  ChartJS.register(ArcElement,Tooltip,Legend,LineElement,PointElement,LinearScale,CategoryScale);
+
+
+  const exampleData:ChartData<"line"> = {
+    labels:["Jan","Feb","Mar","Apr","May"],
+    datasets:[
+      {
+        label:"Sales",
+        data:[10,20,30,40,50],
+        borderColor: "rgba(75,192,192,1)",
+        backgroundColor : "rgba(75,192,192,0.2)",
+        fill:true
+      },
+    ],
+  };
+
+  return(
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+
+        <h1>Test</h1>
+        <Chart type="line" data={exampleData}></Chart>
+
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
+
 
 export default App
