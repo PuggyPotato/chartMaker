@@ -1,1 +1,49 @@
 @import "tailwindcss";
+
+
+#landingHeader{
+  font-size:3rem;
+  font-weight: bolder;
+  color:#1eeaf9;
+  text-shadow:2px 2px 3px pink ;
+  width: auto;
+  height: auto;
+}
+
+html{
+  background-color: rgb(39, 3, 90);
+}
+
+#topLeftBox{
+  border: 10px ridge black;
+  width: 25rem;
+  height: 26rem;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+
+#landingDescription{
+  font-size:1.5em;
+  font-weight: lighter;
+  color:#0713ed;
+  text-shadow:2px 2px 3px pink ;
+  margin-left: 0rem;
+  margin-top: 0rem;
+  line-height: 2.0rem;
+  text-align: center;
+}
+
+#tryNowButton{
+  border: thick double ;
+  padding: 5px;
+  border-radius: 15%;
+  position: relative;
+  top: 0.8rem;
+  left:8rem;
+  background-color: rgb(4, 103, 19);
+  font-family: monospace, Arial, Helvetica, sans-serif;
+}
