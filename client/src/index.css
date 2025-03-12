@@ -16,9 +16,9 @@ html{
 
 #topLeftBox{
   border: 10px ridge black;
-  width: 25rem;
-  height: 26rem;
-  margin-left: 2rem;
+  width: 40rem;
+  height: 20rem;
+  margin-left: 6rem;
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
@@ -27,7 +27,7 @@ html{
 }
 
 #landingDescription{
-  font-size:1.5em;
+  font-size:1.8em;
   font-weight: lighter;
   color:#0713ed;
   text-shadow:2px 2px 3px pink ;
@@ -38,12 +38,52 @@ html{
 }
 
 #tryNowButton{
-  border: thick double ;
+  border: 2px solid white ;
   padding: 5px;
-  border-radius: 15%;
+  border-radius: 5%;
+  font-size: 1.2rem;
   position: relative;
-  top: 0.8rem;
-  left:8rem;
+  top: 1.7rem;
+  right:36%;
   background-color: rgb(4, 103, 19);
   font-family: monospace, Arial, Helvetica, sans-serif;
+}
+
+#topRightBox{
+  border: 10px ridge black;
+  width: 40rem;
+  height: 20rem;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+
+#landingDiv{
+  display: flex;
+  flex-direction: row;
+}
+
+#topRightHeader{
+  font-size:1.85em;
+  font-weight: lighter;
+  color:#00fff2;
+  text-shadow:2px 2px 3px pink ;
+  margin-left: 0rem;
+  margin-top: 0.5rem;
+  line-height: 2.0rem;
+  padding-left: 1rem;
+  text-align: left;
+  list-style-type: square;
+
+}
+
+#landingChartIMG{
+  width: 13rem;
+  height: 8rem;
+  position: relative;
+  bottom:28%;
+  left:35%
 }
