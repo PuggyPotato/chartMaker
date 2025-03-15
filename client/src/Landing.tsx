@@ -1,9 +1,9 @@
-
+import { Routes, Route, Link,useNavigate } from "react-router";
 
 
 
 function Landing(){
-
+    const navigate = useNavigate();
 
 
     return(
@@ -15,7 +15,7 @@ function Landing(){
                 </div>
                 <div id="topRightBox">
                     <h2 id="topRightHeader">Stop wasting time manually creating charts. With Chart Makers, you can turn raw data into stunning, insightful visualizations in seconds—no coding, no hassle. Just upload your dataset, choose a chart type, and let our Program handle the rest.</h2>
-                    <button id="tryNowButton">Try it Now!</button>
+                    <button id="tryNowButton" onClick={() =>navigate("./Home.tsx")}>Try it Now!</button>
                     <img src="./landingChart.png" id="landingChartIMG" ></img>
                 </div>
                 <div id="bottomBox">
