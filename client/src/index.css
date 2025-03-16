@@ -111,3 +111,39 @@ html{
   line-height: 2.0rem;
   text-align: center;
 }
+
+#dataTable{
+  border: 5px solid black;
+  width: 25rem;
+  height: 35rem;
+  position: absolute;
+  left: 10%;
+  top: 10%;
+}
+
+.dataNameInput{
+  border: 3px solid black;
+  width: 200px;
+  border-top: 0;
+  border-left: 0;
+  margin-left: 0px;
+  text-align: center;
+}
+
+#dataHeader{
+  display: flex;
+  flex-direction: row;
+  
+
+
+}
+
+.value{
+  border: 3px solid black;
+  width: 195px;
+  border-top: 0;
+  border-left: 0;
+  margin-left: 6px;
+  text-align: center;
+
+}

@@ -1,7 +1,8 @@
 //import {Chart as ChartJS,ArcElement,Tooltip,Legend,LineElement,PointElement,LinearScale,CategoryScale, ChartData} from "chart.js";
 //import {Chart } from "react-chartjs-2";
 import Landing from "./Landing.tsx"
-import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
+import Home from "./Home.tsx";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 
 function App(){
@@ -26,6 +27,7 @@ function App(){
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing/>}></Route>
+          <Route path="/Home.tsx" element={<Home/>}></Route>
         </Routes>
       </BrowserRouter>
     </>
