@@ -1,6 +1,6 @@
-import { useState } from "react"
-
-
+import { useMemo, useState } from "react"
+import {Chart as ChartJS,ArcElement,Tooltip,Legend,LineElement,PointElement,LinearScale,CategoryScale, ChartData} from "chart.js/auto";
+import {Chart,Line ,Pie,Bar} from "react-chartjs-2";
 
 function Home(){
     const [dataName,setDataName] = useState("Data Name");
@@ -29,31 +29,54 @@ function Home(){
 
 
 
-    const [data1,setData1] = useState("");
-    const [data2,setData2] = useState("");
-    const [data3,setData3] = useState("");
-    const [data4,setData4] = useState("");
-    const [data5,setData5] = useState("");
-    const [data6,setData6] = useState("");
-    const [data7,setData7] = useState("");
-    const [data8,setData8] = useState("");
-    const [data9,setData9] = useState("");
-    const [data10,setData10] = useState("");
-    const [data11,setData11] = useState("");
-    const [data12,setData12] = useState("");
-    const [data13,setData13] = useState("");
-    const [data14,setData14] = useState("");
-    const [data15,setData15] = useState("");
-    const [data16,setData16] = useState("");
-    const [data17,setData17] = useState("");
-    const [data18,setData18] = useState("");
-    const [data19,setData19] = useState("");
-    const [data20,setData20] = useState("");
+    const [data1,setData1] = useState<number>(0)
+    const [data2,setData2] = useState(0);
+    const [data3,setData3] = useState(0);
+    const [data4,setData4] = useState(0);
+    const [data5,setData5] = useState(0);
+    const [data6,setData6] = useState(0);
+    const [data7,setData7] = useState(0);
+    const [data8,setData8] = useState(0);
+    const [data9,setData9] = useState(0);
+    const [data10,setData10] = useState(0);
+    const [data11,setData11] = useState<number>(0);
+    const [data12,setData12] = useState(0);
+    const [data13,setData13] = useState(0);
+    const [data14,setData14] = useState(0);
+    const [data15,setData15] = useState(0);
+    const [data16,setData16] = useState(0);
+    const [data17,setData17] = useState(0);
+    const [data18,setData18] = useState(0);
+    const [data19,setData19] = useState(0);
+    const [data20,setData20] = useState(0);
 
 
 
+    ChartJS.register(ArcElement,Tooltip,Legend,LineElement,PointElement,LinearScale,CategoryScale);
 
 
+    const exampleData:ChartData<"bar"> = useMemo(() =>({
+        labels:[dataHeader1,dataHeader2,dataHeader3,dataHeader4,dataHeader5,
+            dataHeader6,dataHeader7,dataHeader8,dataHeader9,dataHeader10,
+            dataHeader11,dataHeader12,dataHeader13,dataHeader14,dataHeader15
+            ,dataHeader16,dataHeader17,dataHeader18,dataHeader19,dataHeader20],
+    datasets:[
+      {
+        label:"Sales",
+        data:[data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,data12,data13,data14,data15,
+          data16,data17,data18,data19,data20],
+          backgroundColor: "rgba(75,192,192,0.6)", // Bar color
+          borderColor: "rgba(75,192,192,1)",
+          borderWidth: 1,
+      },
+    ],
+    }),[dataHeader1,dataHeader2,dataHeader3,dataHeader4,dataHeader5,
+        dataHeader6,dataHeader7,dataHeader8,dataHeader9,dataHeader10,
+        ,dataHeader11,dataHeader12,dataHeader13,dataHeader14,dataHeader15
+        ,dataHeader16,dataHeader17,dataHeader18,dataHeader19,dataHeader20,data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,data12,data13,data14,data15,
+        data16,data17,data18,data19,data20]) 
+        console.log("Dataset Data:", exampleData.datasets[0].data);
+        console.log("Type of data11:", typeof data11, "Value:", data11);
 
 
     return(
@@ -86,28 +109,31 @@ function Home(){
                     <input className="dataNameInput" value={dataHeader20} onChange={(e) =>setDataHeader20(e.target.value)} placeholder="Name 20"></input>
                 </div>
                 <div id="value" className="absolute top-[27px] left-[193px] ">
-                    <input className="dataValueInput  value px-[0px] " value={data1} onChange={(e) =>setData1(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data2} onChange={(e) =>setData2(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data3} onChange={(e) =>setData3(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data4} onChange={(e) =>setData4(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data5} onChange={(e) =>setData5(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data6} onChange={(e) =>setData6(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data7} onChange={(e) =>setData7(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data8} onChange={(e) =>setData8(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data9} onChange={(e) =>setData9(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data10} onChange={(e) =>setData10(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data11} onChange={(e) =>setData11(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data12} onChange={(e) =>setData12(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data13} onChange={(e) =>setData13(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data14} onChange={(e) =>setData14(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data15} onChange={(e) =>setData15(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data16} onChange={(e) =>setData16(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data17} onChange={(e) =>setData17(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data18} onChange={(e) =>setData18(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data19} onChange={(e) =>setData19(e.target.value)} placeholder="0" type="number"></input>
-                    <input className="dataValueInput  value px-[4px] " value={data20} onChange={(e) =>setData20(e.target.value)} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[0px] " value={data1} onChange={(e) =>setData1(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data2} onChange={(e) =>setData2(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data3} onChange={(e) =>setData3(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data4} onChange={(e) =>setData4(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data5} onChange={(e) =>setData5(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data6} onChange={(e) =>setData6(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data7} onChange={(e) =>setData7(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data8} onChange={(e) =>setData8(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data9} onChange={(e) =>setData9(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data10} onChange={(e) =>setData10(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data11} onChange={(e) =>setData11(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data12} onChange={(e) =>setData12(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data13} onChange={(e) =>setData13(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data14} onChange={(e) =>setData14(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data15} onChange={(e) =>setData15(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data16} onChange={(e) =>setData16(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data17} onChange={(e) =>setData17(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data18} onChange={(e) =>setData18(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data19} onChange={(e) =>setData19(Number(e.target.value))} placeholder="0" type="number"></input>
+                    <input className="dataValueInput  value px-[4px] " value={data20} onChange={(e) =>setData20(Number(e.target.value))} placeholder="0" type="number"></input>
                 </div>
             </div>
+            <div className="absolute right-30 size-156 top-50 ">
+                    <Bar data={exampleData}></Bar>
+                </div>
         </>
     )
 }
