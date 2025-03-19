@@ -1,10 +1,14 @@
-import { useMemo, useState } from "react"
+import { ReactElement, useEffect, useMemo, useState } from "react"
 import {Chart as ChartJS,ArcElement,Tooltip,Legend,LineElement,PointElement,LinearScale,CategoryScale, ChartData} from "chart.js/auto";
 import {Chart,Line ,Pie,Bar} from "react-chartjs-2";
+import { jsx } from "react/jsx-runtime";
 
 function Home(){
     const [dataName,setDataName] = useState("Data Name");
     const [dataValueHeader,setDataValueHeader] = useState("Value");
+    const [typeOfChart,setTypeOfChart] = useState("line");
+    const [chartShown,setChartShown] = useState<ReactElement | null>(null)
+    
 
     const [dataHeader1,setDataHeader1] = useState("");
     const [dataHeader2,setDataHeader2] = useState("");
@@ -55,7 +59,7 @@ function Home(){
     ChartJS.register(ArcElement,Tooltip,Legend,LineElement,PointElement,LinearScale,CategoryScale);
 
 
-    const exampleData:ChartData<"bar"> = useMemo(() =>({
+    const exampleData:ChartData<any> = useMemo(() =>({
         labels:[dataHeader1,dataHeader2,dataHeader3,dataHeader4,dataHeader5,
             dataHeader6,dataHeader7,dataHeader8,dataHeader9,dataHeader10,
             dataHeader11,dataHeader12,dataHeader13,dataHeader14,dataHeader15
@@ -75,9 +79,20 @@ function Home(){
         ,dataHeader11,dataHeader12,dataHeader13,dataHeader14,dataHeader15
         ,dataHeader16,dataHeader17,dataHeader18,dataHeader19,dataHeader20,data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,data12,data13,data14,data15,
         data16,data17,data18,data19,data20]) 
-        console.log("Dataset Data:", exampleData.datasets[0].data);
-        console.log("Type of data11:", typeof data11, "Value:", data11);
 
+    useEffect(() =>{
+
+    
+    if(typeOfChart == "bar"){
+        setChartShown(<Bar data={exampleData}></Bar>)
+    }
+    else if(typeOfChart == "line"){
+        setChartShown(<Line data={exampleData}></Line>)
+    }
+    else if(typeOfChart == "pie"){
+        setChartShown(<Pie data={exampleData}></Pie>)
+    }
+    },[typeOfChart])
 
     return(
         <>
@@ -131,8 +146,16 @@ function Home(){
                     <input className="dataValueInput  value px-[4px] " value={data20} onChange={(e) =>setData20(Number(e.target.value))} placeholder="0" type="number"></input>
                 </div>
             </div>
-            <div className="absolute right-30 size-156 top-50 ">
-                    <Bar data={exampleData}></Bar>
+            <div className="absolute right-30 size-100 top-50 ">
+                    {chartShown}
+                    
+                    <select className="border-2" onChange={(e) =>{
+                        setTypeOfChart(e.target.value)
+                        console.log(e.target.value)}}>
+                        <option value={"bar"}>Bar</option>
+                        <option value={"line"}>Line</option>
+                        <option value={"pie"}>Pie</option>
+                    </select>
                 </div>
         </>
     )
