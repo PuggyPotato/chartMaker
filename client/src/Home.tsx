@@ -60,20 +60,32 @@ function Home(){
 
 
     const exampleData:ChartData<any> = useMemo(() =>({
+        
         labels:[dataHeader1,dataHeader2,dataHeader3,dataHeader4,dataHeader5,
             dataHeader6,dataHeader7,dataHeader8,dataHeader9,dataHeader10,
             dataHeader11,dataHeader12,dataHeader13,dataHeader14,dataHeader15
             ,dataHeader16,dataHeader17,dataHeader18,dataHeader19,dataHeader20],
-    datasets:[
+    datasets: typeOfChart !== "pie" ? 
+    [
       {
-        label:"Sales",
-        data:[data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,data12,data13,data14,data15,
-          data16,data17,data18,data19,data20],
-          backgroundColor: "rgba(75,192,192,0.6)", // Bar color
-          borderColor: "rgba(75,192,192,1)",
-          borderWidth: 1,
-      },
-    ],
+            label:"Sales",
+            data:[data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,data12,data13,data14,data15,
+            data16,data17,data18,data19,data20],
+            backgroundColor: "rgba(75,192,192,0.6)", // Bar color
+            borderColor: "rgba(75,192,192,1)",
+            borderWidth: 1
+        }]:[{
+            data: [data1, data2, data3, data4, data5, data6, data7, data8, data9, data10,
+                data11, data12, data13, data14, data15, data16, data17, data18, data19, data20],
+        backgroundColor: [
+            "#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF",
+            "#FF9F40", "#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0",
+            "#9966FF", "#FF9F40", "#FF6384", "#36A2EB", "#FFCE56",
+            "#4BC0C0", "#9966FF", "#FF9F40", "#FF6384", "#36A2EB"
+        ],
+        borderColor: "#ffffff",
+        borderWidth: 1
+      }]
     }),[dataHeader1,dataHeader2,dataHeader3,dataHeader4,dataHeader5,
         dataHeader6,dataHeader7,dataHeader8,dataHeader9,dataHeader10,
         ,dataHeader11,dataHeader12,dataHeader13,dataHeader14,dataHeader15
@@ -92,7 +104,11 @@ function Home(){
     else if(typeOfChart == "pie"){
         setChartShown(<Pie data={exampleData}></Pie>)
     }
-    },[typeOfChart])
+    },[typeOfChart,dataHeader1,dataHeader2,dataHeader3,dataHeader4,dataHeader5,
+        dataHeader6,dataHeader7,dataHeader8,dataHeader9,dataHeader10,
+        ,dataHeader11,dataHeader12,dataHeader13,dataHeader14,dataHeader15
+        ,dataHeader16,dataHeader17,dataHeader18,dataHeader19,dataHeader20,data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,data12,data13,data14,data15,
+        data16,data17,data18,data19,data20])
 
     return(
         <>
@@ -146,7 +162,7 @@ function Home(){
                     <input className="dataValueInput  value px-[4px] " value={data20} onChange={(e) =>setData20(Number(e.target.value))} placeholder="0" type="number"></input>
                 </div>
             </div>
-            <div className="absolute right-30 size-100 top-50 ">
+            <div className="absolute right-30 size-128 top-30 ">
                     {chartShown}
                     
                     <select className="border-2" onChange={(e) =>{
