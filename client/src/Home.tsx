@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useMemo, useState } from "react"
+import { ReactElement, useEffect, useMemo, useState,useRef } from "react"
 import {Chart as ChartJS,ArcElement,Tooltip,Legend,LineElement,PointElement,LinearScale,CategoryScale, ChartData} from "chart.js/auto";
 import {Chart,Line ,Pie,Bar} from "react-chartjs-2";
 import { jsx } from "react/jsx-runtime";
@@ -7,8 +7,8 @@ function Home(){
     const [dataName,setDataName] = useState("Data Name");
     const [dataValueHeader,setDataValueHeader] = useState("Value");
     const [typeOfChart,setTypeOfChart] = useState("line");
-    const [chartShown,setChartShown] = useState<ReactElement | null>(null)
     
+    const chartRef = useRef<any>(null);
 
     const [dataHeader1,setDataHeader1] = useState("");
     const [dataHeader2,setDataHeader2] = useState("");
@@ -60,7 +60,6 @@ function Home(){
 
 
     const exampleData:ChartData<any> = useMemo(() =>({
-        
         labels:[dataHeader1,dataHeader2,dataHeader3,dataHeader4,dataHeader5,
             dataHeader6,dataHeader7,dataHeader8,dataHeader9,dataHeader10,
             dataHeader11,dataHeader12,dataHeader13,dataHeader14,dataHeader15
@@ -92,23 +91,16 @@ function Home(){
         ,dataHeader16,dataHeader17,dataHeader18,dataHeader19,dataHeader20,data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,data12,data13,data14,data15,
         data16,data17,data18,data19,data20]) 
 
-    useEffect(() =>{
-
-    
-    if(typeOfChart == "bar"){
-        setChartShown(<Bar data={exampleData}></Bar>)
-    }
-    else if(typeOfChart == "line"){
-        setChartShown(<Line data={exampleData}></Line>)
-    }
-    else if(typeOfChart == "pie"){
-        setChartShown(<Pie data={exampleData}></Pie>)
-    }
-    },[typeOfChart,dataHeader1,dataHeader2,dataHeader3,dataHeader4,dataHeader5,
-        dataHeader6,dataHeader7,dataHeader8,dataHeader9,dataHeader10,
-        ,dataHeader11,dataHeader12,dataHeader13,dataHeader14,dataHeader15
-        ,dataHeader16,dataHeader17,dataHeader18,dataHeader19,dataHeader20,data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,data12,data13,data14,data15,
-        data16,data17,data18,data19,data20])
+    function downloadChart(){
+            if (chartRef.current) {
+              const chartCanvas = chartRef.current.canvas;  
+              const image = chartCanvas.toDataURL("image/png");
+              const link = document.createElement("a");
+              link.href = image;
+              link.download = "chart.png";
+              link.click();
+            }
+          };
 
     return(
         <>
@@ -163,8 +155,9 @@ function Home(){
                 </div>
             </div>
             <div className="absolute right-30 size-128 top-30 ">
-                    {chartShown}
-                    
+                    {typeOfChart === "bar" && <Bar data={exampleData} ref={chartRef} />}
+                    {typeOfChart === "line" && <Line data={exampleData} ref={chartRef} />}
+                    {typeOfChart === "pie" && <Pie data={exampleData} ref={chartRef} />}
                     <select className="border-2" onChange={(e) =>{
                         setTypeOfChart(e.target.value)
                         console.log(e.target.value)}}>
@@ -172,6 +165,7 @@ function Home(){
                         <option value={"line"}>Line</option>
                         <option value={"pie"}>Pie</option>
                     </select>
+                    <button onClick={downloadChart} className="border-2 h-8 cursor-pointer">Download Chart</button>
                 </div>
         </>
     )
