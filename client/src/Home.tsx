@@ -1,7 +1,9 @@
 import { ReactElement, useEffect, useMemo, useState,useRef } from "react"
-import {Chart as ChartJS,ArcElement,Tooltip,Legend,LineElement,PointElement,LinearScale,CategoryScale, ChartData} from "chart.js/auto";
+import {Chart as ChartJS,ArcElement,Tooltip,Legend,LineElement,PointElement,LinearScale,CategoryScale, ChartData,ChartOptions} from "chart.js/auto";
 import {Chart,Line ,Pie,Bar} from "react-chartjs-2";
 import { jsx } from "react/jsx-runtime";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+import { color } from "chart.js/helpers";
 
 function Home(){
     const [dataName,setDataName] = useState("Data Name");
@@ -56,7 +58,7 @@ function Home(){
 
 
 
-    ChartJS.register(ArcElement,Tooltip,Legend,LineElement,PointElement,LinearScale,CategoryScale);
+    ChartJS.register(ArcElement,Tooltip,Legend,LineElement,PointElement,LinearScale,CategoryScale,ChartDataLabels);
 
 
     const exampleData:ChartData<any> = useMemo(() =>({
@@ -74,13 +76,14 @@ function Home(){
             borderColor: "rgba(75,192,192,1)",
             borderWidth: 1
         }]:[{
+            labels:["1","2","3","4"],
             data: [data1, data2, data3, data4, data5, data6, data7, data8, data9, data10,
                 data11, data12, data13, data14, data15, data16, data17, data18, data19, data20],
         backgroundColor: [
-            "#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF",
-            "#FF9F40", "#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0",
-            "#9966FF", "#FF9F40", "#FF6384", "#36A2EB", "#FFCE56",
-            "#4BC0C0", "#9966FF", "#FF9F40", "#FF6384", "#36A2EB"
+            "#FF80ED", "#065535", "#000000", "#133337", "#FFC0CB",
+            "#FFE4E1", "#008080", "#FFD700", "#00FFFF", "#0000FF",
+            "#FFA500", "#FF7373", "#666666", "#BADA55", "#00FF00",
+            "#420420", "#FF0000", "#66CDAA", "#FF00FF", "#7FFFD4"
         ],
         borderColor: "#ffffff",
         borderWidth: 1
@@ -90,6 +93,23 @@ function Home(){
         ,dataHeader11,dataHeader12,dataHeader13,dataHeader14,dataHeader15
         ,dataHeader16,dataHeader17,dataHeader18,dataHeader19,dataHeader20,data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,data12,data13,data14,data15,
         data16,data17,data18,data19,data20]) 
+
+    const options :ChartOptions<"pie"> ={
+        plugins: {legend:{
+            display:true,
+            position:"right" as const,
+            labels:{
+                font:{
+                    size:14,
+                    weight:"bold"
+                },
+                color:"#000000",
+                boxWidth:50,
+                padding:10,
+            }}
+                
+        }
+    };
 
     function downloadChart(){
             if (chartRef.current) {
@@ -154,10 +174,10 @@ function Home(){
                     <input className="dataValueInput  value px-[4px] " value={data20} onChange={(e) =>setData20(Number(e.target.value))} placeholder="0" type="number"></input>
                 </div>
             </div>
-            <div className="absolute right-30 size-128 top-30 ">
-                    {typeOfChart === "bar" && <Bar data={exampleData} ref={chartRef} />}
-                    {typeOfChart === "line" && <Line data={exampleData} ref={chartRef} />}
-                    {typeOfChart === "pie" && <Pie data={exampleData} ref={chartRef} />}
+            <div className={`absolute right-45 ${typeOfChart === "bar" || typeOfChart === "line" ? 'size-184' : 'size-128' } top-30 `}>
+                    {typeOfChart === "bar" && <Bar data={exampleData} ref={chartRef}  className="size-256"/>}
+                    {typeOfChart === "line" && <Line data={exampleData} ref={chartRef} className="size-256"/>}
+                    {typeOfChart === "pie" && <Pie data={exampleData} ref={chartRef} options={options}/>}
                     <select className="border-2" onChange={(e) =>{
                         setTypeOfChart(e.target.value)
                         console.log(e.target.value)}}>
