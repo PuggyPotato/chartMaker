@@ -1,6 +1,6 @@
 import { ReactElement, useEffect, useMemo, useState,useRef } from "react"
 import {Chart as ChartJS,ArcElement,Tooltip,Legend,LineElement,PointElement,LinearScale,CategoryScale, ChartData,ChartOptions} from "chart.js/auto";
-import {Chart,Line ,Pie,Bar} from "react-chartjs-2";
+import {Chart,Line ,Pie,Bar,Doughnut,Scatter} from "react-chartjs-2";
 import { jsx } from "react/jsx-runtime";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { color } from "chart.js/helpers";
@@ -66,7 +66,8 @@ function Home(){
             dataHeader6,dataHeader7,dataHeader8,dataHeader9,dataHeader10,
             dataHeader11,dataHeader12,dataHeader13,dataHeader14,dataHeader15
             ,dataHeader16,dataHeader17,dataHeader18,dataHeader19,dataHeader20],
-    datasets: typeOfChart !== "pie" ? 
+    datasets: 
+        typeOfChart !== "pie" && typeOfChart !== "doughnut" ? 
     [
       {
             label:"Sales",
@@ -94,7 +95,7 @@ function Home(){
         ,dataHeader16,dataHeader17,dataHeader18,dataHeader19,dataHeader20,data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,data12,data13,data14,data15,
         data16,data17,data18,data19,data20]) 
 
-    const options :ChartOptions<"pie"> ={
+    const pieOptions :ChartOptions<"pie" | "doughnut"> ={
         plugins: {legend:{
             display:true,
             position:"right" as const,
@@ -177,13 +178,17 @@ function Home(){
             <div className={`absolute right-45 ${typeOfChart === "bar" || typeOfChart === "line" ? 'size-184' : 'size-128' } top-30 `}>
                     {typeOfChart === "bar" && <Bar data={exampleData} ref={chartRef}  className="size-256"/>}
                     {typeOfChart === "line" && <Line data={exampleData} ref={chartRef} className="size-256"/>}
-                    {typeOfChart === "pie" && <Pie data={exampleData} ref={chartRef} options={options}/>}
+                    {typeOfChart === "pie" && <Pie data={exampleData} ref={chartRef} options={pieOptions}/>}
+                    {typeOfChart === "doughnut" && <Doughnut data={exampleData} ref={chartRef} options={pieOptions}/>}
+                    {typeOfChart === "scatter" && <Scatter data={exampleData} ref={chartRef} />}
                     <select className="border-2" onChange={(e) =>{
                         setTypeOfChart(e.target.value)
                         console.log(e.target.value)}}>
                         <option value={"bar"}>Bar</option>
                         <option value={"line"}>Line</option>
                         <option value={"pie"}>Pie</option>
+                        <option value={"doughnut"}>Doughnut</option>
+                        <option value={"scatter"}>Scatter</option>
                     </select>
                     <button onClick={downloadChart} className="border-2 h-8 cursor-pointer">Download Chart</button>
                 </div>
