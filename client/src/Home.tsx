@@ -4,11 +4,13 @@ import {Chart,Line ,Pie,Bar,Doughnut,Scatter} from "react-chartjs-2";
 import { jsx } from "react/jsx-runtime";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { color } from "chart.js/helpers";
+import { useNavigate } from "react-router-dom";
 
 function Home(){
     const [dataName,setDataName] = useState("Data Name");
     const [dataValueHeader,setDataValueHeader] = useState("Value");
     const [typeOfChart,setTypeOfChart] = useState("line");
+    const navigate = useNavigate();
     
     const chartRef = useRef<any>(null);
 
@@ -175,12 +177,12 @@ function Home(){
                     <input className="dataValueInput  value px-[4px] " value={data20} onChange={(e) =>setData20(Number(e.target.value))} placeholder="0" type="number"></input>
                 </div>
             </div>
-            <div className={`absolute right-45 ${typeOfChart === "bar" || typeOfChart === "line" ? 'size-184' : 'size-128' } top-30 `}>
+            <div className={`absolute right-45 ${typeOfChart === "bar" || typeOfChart === "line" ||typeOfChart === "scatter" ? 'size-184' : 'size-128' } top-30 `}>
                     {typeOfChart === "bar" && <Bar data={exampleData} ref={chartRef}  className="size-256"/>}
                     {typeOfChart === "line" && <Line data={exampleData} ref={chartRef} className="size-256"/>}
                     {typeOfChart === "pie" && <Pie data={exampleData} ref={chartRef} options={pieOptions}/>}
                     {typeOfChart === "doughnut" && <Doughnut data={exampleData} ref={chartRef} options={pieOptions}/>}
-                    {typeOfChart === "scatter" && <Scatter data={exampleData} ref={chartRef} />}
+                    {typeOfChart === "scatter" && <Scatter data={exampleData} ref={chartRef} className=""/>}
                     <select className="border-2" onChange={(e) =>{
                         setTypeOfChart(e.target.value)
                         console.log(e.target.value)}}>
@@ -192,6 +194,7 @@ function Home(){
                     </select>
                     <button onClick={downloadChart} className="border-2 h-8 cursor-pointer">Download Chart</button>
                 </div>
+                <button className="absolute bottom-4 left-8 w-56 border-2 cursor-pointer bg-slate-300 " onClick={() =>navigate("./ExcelChart")}>Insert Data With CSV</button>
         </>
     )
 }
