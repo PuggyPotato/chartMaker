@@ -9,8 +9,8 @@ function Home(){
 
     return(
         <div>
-            <button onClick={() =>navigate("./ManualChart")} className="border-2">Manual Input Chart</button>
-            <button onClick={() =>navigate("./ExcelChart")} className="border-2 m-2">Input Data With CSV/Excel</button>
+            <button onClick={() =>navigate("/ManualChart")} className="border-2">Manual Input Chart</button>
+            <button onClick={() =>navigate("/ExcelChart")} className="border-2 m-2">Input Data With CSV/Excel</button>
         </div>
     )
 }

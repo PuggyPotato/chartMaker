@@ -194,7 +194,7 @@ function ManualChart(){
                     </select>
                     <button onClick={downloadChart} className="border-2 h-8 cursor-pointer">Download Chart</button>
                 </div>
-                <button className="absolute bottom-4 left-8 w-56 border-2 cursor-pointer bg-slate-300 " onClick={() =>navigate("/ExcelChart.tsx")}>Insert Data With CSV</button>
+                <button className="absolute bottom-4 left-8 w-56 border-2 cursor-pointer bg-slate-300 " onClick={() =>navigate("/ExcelChart")}>Insert Data With CSV</button>
         </>
     )
 }

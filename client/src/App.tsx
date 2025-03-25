@@ -15,9 +15,9 @@ function App(){
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing/>}></Route>
-          <Route path="/Home.tsx" element={<Home/>}></Route>
-          <Route path="/ManualChart.tsx" element={<ManualChart/>}></Route>
-          <Route path="/ExcelChart.tsx" element={<ExcelChart/>}></Route>
+          <Route path="/Home" element={<Home/>}></Route>
+          <Route path="/ManualChart" element={<ManualChart/>}></Route>
+          <Route path="/ExcelChart" element={<ExcelChart/>}></Route>
         </Routes>
       </BrowserRouter>
     </>
